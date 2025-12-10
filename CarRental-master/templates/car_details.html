@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Car Details</title>
+    <link href="{{ url_for('static', filename='styles/car_details.css') }}" rel="stylesheet" type="text/css">
+</head>
+<body>
+<!-- Header Section -->
+{% include 'header.html' %}
+
+<!-- Car Details Section -->
+<section class="car-details">
+    <div class="container">
+        <div class="car-info">
+            <div class="car-image">
+                <img alt="{{ car.name }}" class="car-image" src="{{ car.image_url }}">
+            </div>
+            <div class="car-description">
+                <h2>{{ car.name }} {{ car.model }}</h2>
+                <p><strong>Year:</strong> {{ car.year }}</p>
+                <p><strong>Color:</strong> {{ car.color }}</p>
+                <p><strong>Price per day:</strong> ${{ car.price }}</p>
+                <p><strong>Engine:</strong> {{ car.engine }}</p>
+                <p><strong>Gearbox:</strong> {{ car.gearbox }}</p>
+            </div>
+        </div>
+        <div class="rental-form-section">
+            <h3>Ready to Rent?</h3>
+            <!-- Rental Form -->
+            <form action="/rent/{{ car.id }}" id="rental-form" method="POST">
+                <div class="form-group">
+                    <label for="start-date">Start Date:</label>
+                    <input id="start-date" name="start_date" required type="date">
+                </div>
+                <div class="form-group">
+                    <label for="end-date">End Date:</label>
+                    <input id="end-date" name="end_date" required type="date">
+                </div>
+                <!-- Decoration Options -->
+                <div class="decoration-options">
+                    <input id="child-seat" name="decorators" type="checkbox" value="child_seat">
+                    <label for="child-seat">Child Seat</label><br>
+                    <input id="gps" name="decorators" type="checkbox" value="gps">
+                    <label for="gps">GPS</label><br>
+                    <input id="roof_bag" name="decorators" type="checkbox" value="RoofBag">
+                    <label for="roof_bag">Roof Bag</label><br>
+                </div>
+                <button type="submit">Rent Car</button>
+            </form>
+        </div>
+        <div class="car-actions">
+            <a class="button back-button" href="/cars">Back to Cars</a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer Section -->
+{% include 'footer.html' %}
+
+</body>
+</html>

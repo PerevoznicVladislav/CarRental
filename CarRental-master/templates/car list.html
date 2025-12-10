@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+          integrity="sha384-5e2ESR8Ycmos6g3gAKr1Jvwye8sW4U1u/cAKulfVJnkakCcMqhOudbtPnvJ+nbv7" rel="stylesheet">
+    <link href="{{ url_for('static', filename='styles/car_list.css') }}" rel="stylesheet" type="text/css">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Our Cars - Car Rental</title>
+</head>
+<body>
+<!-- Header Section -->
+{% include 'header.html' %}
+
+{% if user_logged_in and user_is_admin%}
+<div class="container-body">
+    <h1>Add Car</h1>
+    <!-- Add a button to transfer to the add car page -->
+    <a class="button gradient" href="/add_car">Add Car</a>
+</div>
+{% endif %}
+
+<div class="container">
+    {% for car in cars %}
+    <!-- Car Listings Section -->
+    <section class="car-listings">
+        <div class="car">
+            <a href="/car-details/{{ car.id }}">
+            <img alt="{{ car.name }}" class="car-image" src="{{car.image_url }}">
+            </a>
+            <div class="offer-text">
+                <h3><a href="/car-details/{{ car.id }}"> {{ car.name }} {{ car.model }}</a></h3>
+                <h4 class="pricing">From ${{ car.price }} per day</h4>
+                <div class="car-info">
+                    <div class="car-info-row">
+                        <div class="car-info-item">
+                            <i class="fas fa-calendar-alt"></i> {{ car.year }}
+                        </div>
+                        <div class="car-info-item">
+                            <i class="fas fa-cogs"></i>{{ car.gearbox }}
+                        </div>
+                    </div>
+                    <div class="car-info-row">
+                        <div class="car-info-item">
+                            <i class="fas fa-gas-pump"></i>{{ car.engine }}
+                        </div>
+                        <div class="car-info-item">
+                            <i class="fas fa-paint-brush"></i>{{ car.color }}
+                        </div>
+                    </div>
+                </div>
+                <div class="offer-action offer-action-js">
+                    <a class="button gradient" href="/car-details/{{ car.id }}">Rent Now</a>
+                    {% if user_logged_in and user_is_admin%}
+                    <div style="padding-top: 10px;">
+                        <form action="/delete-car/{{ car.id }}" method="POST">
+                            <button class="button gradient" type="submit">Delete</button>
+                        </form>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+    {% if loop.index % 3 == 0 %}
+</div>
+<div class="container">
+    {% endif %}
+    {% endfor %}
+</div>
+
+<!-- Footer Section -->
+{% include 'footer.html' %}
+</body>
+</html>

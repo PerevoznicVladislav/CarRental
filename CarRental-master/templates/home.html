@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+
+    </style>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="{{ url_for('static', filename='styles/home.css') }}" rel="stylesheet" type="text/css">
+    <title>Car Rental</title>
+
+</head>
+<body>
+<!-- Header Section -->
+{% include 'header.html' %}
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <!-- Removed h2 and p elements -->
+        <a class="btn" href="/cars">Explore Cars</a>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="about">
+    <div class="container">
+        <h2>About Us</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vehicula mauris ac diam tincidunt, in
+            suscipit tortor vestibulum.</p>
+        <!-- Add image or additional content here if desired -->
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="services">
+    <div class="container">
+        <h2>Our Services</h2>
+        <ul>
+            <li>Daily Rentals</li>
+            <li>Long-Term Leases</li>
+            <li>Special Offers</li>
+        </ul>
+    </div>
+</section>
+
+<!-- Fleet Section -->
+<section class="fleet">
+    <div class="container">
+        <h2>Our Fleet</h2>
+        <!-- Add car listings here -->
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials">
+    <div class="container">
+        <h2>Testimonials</h2>
+        <!-- Add testimonials here -->
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact">
+    <div class="container">
+        <h2>Contact Us</h2>
+        <!-- Add contact form or contact information here -->
+    </div>
+</section>
+
+<!-- Footer Section -->
+{% include 'footer.html' %}
+</body>
+</html>
